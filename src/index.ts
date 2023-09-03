@@ -1,25 +1,24 @@
 import express, { Application, Request, Response } from 'express';
 import bodyParser from 'body-parser';
 const app: Application = express();
-const PORT = 3000;
+import dotenv from 'dotenv'
+dotenv.config();
+import { connectMongo } from './config/mongoConnection';
+const PORT = process.env.PORT;
+import { routes } from './app/index.routes';
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.get('/', async (req: Request, res: Response): Promise<Response> => {
+app.get('/test', async (req: Request, res: Response): Promise<Response> => {
   return res.status(200).send({
-    message: 'Hello World!',
+    message: 'Server up and running',
   });
 });
-
-app.post('/post', async (req: Request, res: Response): Promise<Response> => {
-  console.log(req.body);
-  return res.status(200).send({
-    message: 'Hello World from post!',
-  });
-});
+app.use('/api/v1', routes);
 
 try {
+  connectMongo()
   app.listen(PORT, (): void => {
     console.log(`Connected successfully on port ${PORT}`);
   });
