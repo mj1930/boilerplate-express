@@ -1,6 +1,6 @@
-import studentRoute from './student/student.routes';
-import deanRoutes from './dean/dean.routes';
-import slotRoutes from './slots/slot.routes';
+import studentRoute from './controllers/student/student.routes';
+import deanRoutes from './controllers/dean/dean.routes';
+import slotRoutes from './controllers/slots/slot.routes';
 
 export const routes = [
     studentRoute,

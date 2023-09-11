@@ -3,7 +3,7 @@ import bodyParser from 'body-parser';
 const app: Application = express();
 import dotenv from 'dotenv'
 dotenv.config();
-import { connectMongo } from './config/mongoConnection';
+import { connectMongo } from './app/config/mongoConnection';
 const PORT = process.env.PORT;
 import { routes } from './app/index.routes';
 
