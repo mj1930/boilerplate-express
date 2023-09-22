@@ -1,6 +1,6 @@
 import mongoose, { Schema } from "mongoose";
 
-const studentSchema = new Schema({
+const userSchema = new Schema({
     name: {
         type: String,
         default: "",
@@ -19,11 +19,15 @@ const studentSchema = new Schema({
         default: "",
         required: true
     },
-    // bookedSlots
-    bkdSlt: [
+    userType: {
+        type: String,
+        default: "",
+        enum: ['student', 'dean']
+    },
+    bookedSlots: [
         {
-            // Dean Id
-            dId: {
+            // student or dean id
+            id: {
                 type: mongoose.Types.ObjectId,
                 ref: "dean"
             },
@@ -37,4 +41,4 @@ const studentSchema = new Schema({
     timestamps: true
 });
 
-export const student = mongoose.model('student', studentSchema);
+export const user = mongoose.model('dean', userSchema);
